@@ -3,13 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects - ArchVision Studio</title>
+  <title>Our Projects - ArchVision Studio</title>
   <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    .project-filter {
+      margin: 40px auto;
+      text-align: center;
+    }
+    .project-filter select {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    .project-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 40px;
+    }
+    .project-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .project-info {
+      padding: 20px;
+    }
+    .project-info h3 {
+      margin: 0;
+      color: #333;
+    }
+    .project-info p {
+      color: #666;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
   <header>
     <div class="container">
-      <h1>ArchVision Studio</h1>
+      <h1>Our Projects</h1>
       <nav>
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -24,28 +67,58 @@
     </div>
   </header>
 
-  <section class="section">
-    <div class="container">
-      <h2>Our Projects</h2>
-      <div class="projects-grid">
-        <div class="project">
-          <img src="images/project1.jpg" alt="Modern Villa">
-          <h3>Modern Villa</h3>
-          <p>A sleek, sustainable villa with panoramic views and eco-conscious design.</p>
-        </div>
-        <div class="project">
-          <img src="images/project2.jpg" alt="Urban Tower">
-          <h3>Urban Tower</h3>
-          <p>A 40-story skyscraper built with intelligent architecture and glass facades.</p>
-        </div>
-        <div class="project">
-          <img src="images/project3.jpg" alt="Cultural Center">
-          <h3>Cultural Center</h3>
-          <p>Fusion of traditional and modern architecture for a community space.</p>
-        </div>
+  <div class="project-filter">
+    <label for="category">Filter by Category:</label>
+    <select id="category">
+      <option value="all">All</option>
+      <option value="residential">Residential</option>
+      <option value="commercial">Commercial</option>
+      <option value="interior">Interior</option>
+    </select>
+  </div>
+
+  <section class="project-gallery" id="projectGallery">
+    <div class="project-card" data-category="residential">
+      <img src="images/project1.jpg" alt="Residential Project">
+      <div class="project-info">
+        <h3>Skyline Residence</h3>
+        <p>A modern family home with energy-efficient design elements.</p>
+      </div>
+    </div>
+    <div class="project-card" data-category="commercial">
+      <img src="images/project2.jpg" alt="Commercial Project">
+      <div class="project-info">
+        <h3>Urban Plaza</h3>
+        <p>Mixed-use commercial complex with sustainable architecture.</p>
+      </div>
+    </div>
+    <div class="project-card" data-category="interior">
+      <img src="images/project3.jpg" alt="Interior Design">
+      <div class="project-info">
+        <h3>Modern Workspace</h3>
+        <p>Interior redesign focused on employee wellness and collaboration.</p>
+      </div>
+    </div>
+    <div class="project-card" data-category="residential">
+      <img src="images/project4.jpg" alt="Residential Project">
+      <div class="project-info">
+        <h3>Green Haven Villa</h3>
+        <p>Eco-friendly home with smart automation and garden integration.</p>
       </div>
     </div>
   </section>
+
+  <script>
+    const categoryFilter = document.getElementById('category');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    categoryFilter.addEventListener('change', function () {
+      const selected = this.value;
+      projectCards.forEach(card => {
+        card.style.display = selected === 'all' || card.dataset.category === selected ? 'block' : 'none';
+      });
+    });
+  </script>
 
   <footer>
     <div class="container">
